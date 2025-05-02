@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigerian Fashion-Product Explorer</title>
+    <script src="https://kit.fontawesome.com/c36fa683e3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/fashion.css">
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search Nigerian attire...">
+        <button onclick="searchAttire()"><i class="fa fa-search"></i></button>
+    </div>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                <img src="/images/logo.jpg" class="logo">
+                </div>
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                   <!-- <i class="fa-solid fa-xmark" onclick="closemenu()"></i>-->
+                </ul>
+               <!-- <i class="fa-solid fa-bars" onclick="openmenu()"></i>-->
+            </nav>
+
+            <div class="header-text">
+                <p>Nigerian Fashion Stylist | Fashion Designer</p>
+                <h1>Hello, I'm <span>Fatimah</span><br>
+                Welcome to the <strong>Nigerian Fashion Explorer</strong> - your gateway to one of the fastest-growing trends in global African fashion. </h1>
+                <!--<a href="#btn" class="btn">View My Work</a> -->
+            </div>
+        </div>
+    </div>
+    
+    <!-------------------about--------------------->
+
+    <div id="about">
+        <div class="container">
+                    
+                    <div class="line1">
+                    <div class="line2">
+                    <img src="images/benin.jpg" alt="Benin attire">
+                    </div>
+                    <div class="about-col-2">
+                    <h1 class="sub-title">About</h1>
+                    <p>Yoruba men wear agbada, which is a formal attire, commonly worn as part of a 
+                    three-piece set: an open-stitched full gown, a long-sleeved shirt, and sokoto 
+                    (trousers fitted snugly at the ankle) <br> 
+                    The Hausa wear Babaringa similar to a dashiki that is worn by many groups in 
+                    Africa. <br>
+                    The traditional attire of Igbo men includes an isiagu patterned with embroidered 
+                    lion heads, usually worn with trousers and a traditional striped hat. </p>
+
+        </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <!--------------attire---------------------->
+ 
+<div id="attire">
+    <div class="container">
+        <h1 class="sub-title">Nigerian attire</h1>
+        
+        <div class="attire-list">
+            <div class="attire2">
+                <img src="images/AsoOke.webp" alt="Yoruba Traditional Attire">
+                <div class="layer">
+                    <h3>Yoruba Traditional Attire</h3>
+                    <p>Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group 
+                    in the southwest of Nigeria. Over the years, it has successfully held its own as 
+                    the special occasion faric of the Yoruba.</p>
+                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
+  
+        
+            <div class="attire2">
+                <img src="images/Isiagwu.jpg" alt="Igbo Traditional Attire">
+                <div class="layer">
+                    <h3>Igbo Traditional Attire</h3>
+                    <p>The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. 
+                    This is made with high-quality suede materials. Why not make it a point to 
+                    attend an Igbo traditional wedding and experience one of Nigeria's richest cultures.</p>
+                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
+        
+
+            <div class="attire2">
+                <img src="images/hausaStyle.webp" alt="Hausa Traditional Attire">
+                <div class="layer">
+                    <h3>Hausa Traditional Attire</h3>
+                    <p>The traditional dress of the Hausa consists of loose flowing gowns and trousers. 
+                    The gowns have wide openings on both sides for ventilation. The trousers are loose 
+                    at the top and center, but rather tight around the legs. Leather sandals and turbans 
+                    are also typical.</p>
+                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <a href="#" class="btn">See more</a>
+    </div>
+</div>
+
+<!-----------------------contact-------------------->
+   
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-info">
+              <h1 class="sub-title">Contact Me</h1>
+              <p><i class="fa-solid fa-paper-plane"></i>contact@example.com</p>  
+              <p><i class="fa-solid fa-phone"></i>0123456789</p>
+              <div class="social-icons">
+                <a href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
+                <a href=""><i class="fab fa-twitter-square"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-linkedin"></i></a>
+              </div>
+
+             <!-- <a href="image/Oluwatosin Fatimah CV..pdf" download class="btn btn2">Download CV</a>
+            </div> ---->
+            <div class="contact-media">
+                <!--<form name="submit-to-google-sheet">--->
+                    <form>
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>"© 2025 Fatimah.  All rights reserved <i class="fa-solid fa-heart"></i>".</p>
+    </div>
+</div>
+
+
+
+    <script src="fashion.js"></script>
+</body>
+</html>
+
