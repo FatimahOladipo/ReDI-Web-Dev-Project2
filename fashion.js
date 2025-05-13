@@ -97,7 +97,7 @@ function filterAttire() {
   }
 
   window.onload = function () {
-    displayAttires(nigerianAttire); // Display all by default
+    displayAttires(nigerianAttire); 
   };
 
 /*
