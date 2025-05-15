@@ -1,19 +1,3 @@
-/*
-function searchAttire() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const attireItems = document.querySelectorAll('.attire2');
-
-    attireItems.forEach(item => {
-        const text = item.innerText.toLowerCase();
-        if (text.includes(input)) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-}
-*/
-
 
 const nigerianAttire = [
     {
@@ -62,12 +46,20 @@ const nigerianAttire = [
       available: false
     }
   ];
+  
+let displayedAttires = [];
+let currentSort = "default";
+let currentFilter = "All";
+let itemsToShow = 3; // Initially show 3 items
 
   function displayAttires(attires) {
     const container = document.getElementById("attireContainer");
     container.innerHTML ="";
   
-    attires.forEach(attire => {
+  const limitedAttires = attires.slice(0, itemsToShow);
+  displayedAttires = attires;
+
+    limitedAttires.forEach(attire => {
       const attireCard = `
         <div class="attire2">
         <img src="${attire.image}" alt="${attire.name}">
@@ -82,23 +74,53 @@ const nigerianAttire = [
     `;
     container.innerHTML += attireCard;
   });
+
+  const seeMoreBtn = document.querySelector("#attire .btn");
+  if (seeMoreBtn) {
+    if (attires.length > itemsToShow) {
+      seeMoreBtn.style.display = "inline-block";
+    } else {
+      seeMoreBtn.style.display = "none";
+    }
+  }
 }
 
+function showMore() {
+    itemsToShow += 2; 
+    displayAttires(displayedAttires); 
+}
 
 function filterAttire() {
-  const selected = document.getElementById("attireSelect").value;
-  if (selected === "All") {
-    displayAttires(nigerianAttire);
-  } else {
-    const filtered = nigerianAttire.filter(item => item.ethnic === selected);
-    displayAttires(filtered);
+  currentFilter = document.getElementById("attireSelect").value;
+  let filtered = nigerianAttire;
+
+
+  if (currentFilter !== "All") {
+ 
+    filtered = nigerianAttire.filter(item => item.ethnic === currentFilter);
+  
   }
-    
-  }
+
+  itemsToShow = 3;
+
+  sortAttireByOrder(filtered, currentSort);
+}
+
+  function sortAttire(sortOrder) {
+  currentSort = sortOrder;
+  sortAttireByOrder(displayedAttires, sortOrder);
+}
+  
 
   window.onload = function () {
     displayAttires(nigerianAttire); 
-  };
+  
+
+  const seeMoreBtn = document.querySelector("#attire .btn");
+    if (seeMoreBtn) {
+        seeMoreBtn.onclick = showMore;
+    }
+};
 
 /*
   
