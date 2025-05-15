@@ -9,4 +9,3 @@ I added a button called "See more" that shows more clothes when you click it!
 How it works:
 The showMore function tells the page to show 2 more clothing items each time you click.
 The displayAttires function updates the page to show the new number of items.
-We connected the button to the showMore function so it works when clicked.
