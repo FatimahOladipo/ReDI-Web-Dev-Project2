@@ -1,6 +1,6 @@
 //constructor in Java is a special method that is used to initialize objects. 
 class Attire {
-  constructor(id, name, ethnic, description, image, price, availability) {
+  constructor(id, name, ethnic, description, image, price, available) {
     this.id = id;
     this.name = name;
     this.ethnic = ethnic;
@@ -8,21 +8,148 @@ class Attire {
     this.image = image;
     this.price = price;
     this.available = available;
+
   }
 
   getDisplayName() {
-    retrun `${this.name} (${this.ethnic})`;
+    return `${this.name} (${this.ethnic})`;
     }
   }
-/*
+
   const nigerianAttire = [
     new Attire(1, "Yoruba Aso-Oke", "Yoruba", "Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group in the southwest of Nigeria.", "images/AsoOke.webp", 500, true),
     new Attire(2, "Igbo Isiagu", "Igbo", "The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. This is made with high-quality suede materials.", "images/Isiagwu.jpg", 400, true),
     new Attire(3, "Hausa Babaringa", "Hausa", "The traditional dress of the Hausa consists of loose flowing gowns and trousers. The gowns have wide openings on both sides for ventilation.", "images/hausaStyle.webp", 390, true),
     new Attire(4, "Benin Royal Attire", "Benin", "Benin traditional attire features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.", "images/benin.jpg", 510, false),
     new Attire(5, "Efik Traditional Dress", "Efik", "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.", "images/AsoOke.webp", 28000, false)
-];*/
+];
 
+let displayedAttires = [];
+//let nigerianAttire = [];
+let currentSort = "default";
+let currentFilter = "All";
+let itemsToShow = 3; // Initially show 3 items
+
+function showLoading(show) {
+  const container = document.getElementById("attireContainer");
+  if (show) {
+    container.innerHTML = "<p style='text-align: centre;'>Loading...</p>";
+  }
+}
+
+  function displayAttires(attires) {
+    const container = document.getElementById("attireContainer");
+    if (!container) {
+      console.error("Attire container not found!");
+        return;
+    }
+    container.innerHTML ="";
+  
+  const limitedAttires = attires.slice(0, itemsToShow);
+  displayedAttires = attires;
+
+  
+    limitedAttires.forEach(attire => {
+        const attireCard = `
+        <div class="attire2">
+        <img src="${attire.image}" alt="${attire.name}" style="width: 100%; height: auto;">
+        <div class="layer">
+        <h3>${attire.getDisplayName()}</h3>
+        <p>${attire.description}</p>
+        <p><strong>₦${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
+        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+        </div>
+      </div>
+    `;
+    container.innerHTML += attireCard;
+  });
+
+    const seeMoreBtn = document.querySelector("#attire .btn");
+  if (seeMoreBtn) {
+    if (itemsToShow < displayedAttires.length) {
+      seeMoreBtn.textContent = "see more";
+      seeMoreBtn.style.display = "inline-block";
+    }else if (itemsToShow > 3) {
+      seeMoreBtn.textContent = "Show less";
+      seeMoreBtn.style.display = "inline-block";
+    } else {
+      seeMoreBtn.style.display = "none";
+    }
+    } else {
+        console.error("See more button not found!");
+  }
+  }
+
+    function toggleItems() {
+    if (itemsToShow > 3) {
+      itemsToShow = 3;
+    } else {
+      itemsToShow += 2;
+    }
+    displayAttires(displayedAttires);
+  }
+
+  function filterAttire() {
+  currentFilter = document.getElementById("attireSelect").value;
+  let filtered = nigerianAttire;
+
+  if (currentFilter !== "All") {
+    filtered = nigerianAttire.filter(item => item.ethnic === currentFilter);
+  }
+
+  itemsToShow = 3;
+  sortAttireByOrder(filtered, currentSort);
+}
+function sortAttireByOrder(attires, sortOrder) {
+  let sorted = [...attires];
+  if(sortOrder === "low") {
+    sorted.sort((a, b) => a.price - b.price);
+  } else if(sortOrder === "high") {
+    sorted.sort((a,b) => b.price - a.price);
+  }
+  displayAttires(sorted);
+}
+
+  function sortAttire(sortOrder) {
+  currentSort = sortOrder;
+  sortAttireByOrder(displayedAttires, sortOrder);
+}
+  
+function searchAttire() {
+  const searchInput = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = nigerianAttire.filter(item => 
+    item.name.toLowerCase().includes(searchInput) ||
+    item.description.toLowerCase().includes(searchInput) ||
+    item.ethnic.toLowerCase().includes(searchInput)
+    );
+    itemsToShow = 3;
+    sortAttireByOrder(filtered, currentSort);
+}
+
+  window.onload = () => {
+    showLoading(true);
+     try {
+        displayAttires(nigerianAttire); 
+  } catch (error) {
+    console.error("Error fetching attire data:", error);
+    document.getElementById("attireContainer").innerHTML = "<p style='text-align: center; color: red;'>Failed to load attire data. Please try again later.</p>";
+  } finally {
+  showLoading(false);
+  }
+
+  const seeMoreBtn = document.querySelector("#attire .btn");
+    if (seeMoreBtn) {
+        seeMoreBtn.onclick = toggleItems;
+    }
+
+  const searchBtn = document.querySelector(".search-container button");
+    if (searchBtn) {
+        searchBtn.onclick = searchAttire;
+    }
+};
+
+
+/*
 const nigerianAttire = [
     {
       id: 1,
@@ -70,45 +197,10 @@ const nigerianAttire = [
       available: false
     }
   ];
- 
-let displayedAttires = [];
-let nigerianAttire = [];
-let currentSort = "default";
-let currentFilter = "All";
-let itemsToShow = 3; // Initially show 3 items
+ */
 
-function showLoading(show) {
-  const container = document.getElementById("attireContainer");
-  if (show) {
-    container.innerHTML = "<p style='text-align: centre;'>Loading...</p>";
-  }
-}
 
-  function displayAttires(attires) {
-    const container = document.getElementById("attireContainer");
-    if (!container) {
-      console.error("Attire container not found!");
-        return;
-    }
-    container.innerHTML ="";
-  
-  const limitedAttires = attires.slice(0, itemsToShow);
-  displayedAttires = attires;
 
-    limitedAttires.forEach(attire => {
-        const attireCard = `
-        <div class="attire2">
-        <img src="${attire.image}" alt="${attire.name}" style="width: 100%; height: auto;">
-        <div class="layer">
-        <h3>${attire.getDisplayName()}</h3>
-        <p>${attire.description}</p>
-        <p><strong>₦${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
-        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-        </div>
-      </div>
-    `;
-    container.innerHTML += attireCard;
-  });
 /*
         const img = new Image();
         img.src = attire.image;
@@ -119,76 +211,33 @@ function showLoading(show) {
 
 
 
-  const seeMoreBtn = document.querySelector("#attire .btn");
-  if (seeMoreBtn) {
-    if (itemsToShow < displayedAttires.length) {
-      seeMoreBtn.textContent = "see more";
-      seeMoreBtn.style.display = "inline-block";
-    }else if (itemsToShow > 3) {
-      seeMoreBtn.textContent = "Show less";
-      seeMoreBtn.style.display = "inline-block";
-    } else {
-      seeMoreBtn.style.display = "none";
-    }
-    } else {
-        console.error("See more button not found!");
-  }
-  }
-
-  function toggleItems() {
-    if (itemsToShow > 3) {
-      itemsToShow = 3;
-    } else {
-      itemsToShow += 2;
-    }
-    displayAttires(displayedAttires);
-  }
-
-
-function filterAttire() {
-  currentFilter = document.getElementById("attireSelect").value;
-  let filtered = nigerianAttire;
-
-  if (currentFilter !== "All") {
-    filtered = nigerianAttire.filter(item => item.ethnic === currentFilter);
-  }
-
-  itemsToShow = 3;
-  sortAttireByOrder(filtered, currentSort);
-}
 
 
 
-function sortAttireByOrder(attires, sortOrder) {
-  let sorted = [...attires];
-  if(sortOrder === "low") {
-    sorted.sort((a, b) => a.price - b.price);
-  } else if(sortOrder === "high") {
-    sorted.sort((a,b) => b.price - a.price);
-  }
-  displayAttires(sorted);
-}
 
-  function sortAttire(sortOrder) {
-  currentSort = sortOrder;
-  sortAttireByOrder(displayedAttires, sortOrder);
-}
+
+
+
+
+
+
+
+
+
+
+
+/*
+  window.onload = function () {*/
+
+
+
+
   
 
-  window.onload = function () {
-    displayAttires(nigerianAttire); 
-  
+    
+    /*function searchAttire() {
+    console.log("Search functionality not implemented yet!");*/
 
-  const seeMoreBtn = document.querySelector("#attire .btn");
-    if (seeMoreBtn) {
-        seeMoreBtn.onclick = toggleItems;
-    } else {
-        console.error("Button not found on load!");
-    }
-    function searchAttire() {
-    console.log("Search functionality not implemented yet!");
-}
-};
 
 /*
   
@@ -239,4 +288,3 @@ function filterAttire(){
 }
 
 */
-          
