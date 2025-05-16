@@ -78,7 +78,10 @@ let currentFilter = "All";
 let itemsToShow = 3; // Initially show 3 items
 
 function showLoading(show) {
-  
+  const container = document.getElementById("attireContainer");
+  if (show) {
+    container.innerHTML = "<p style='text-align: centre;'>Loading...</p>";
+  }
 }
 
   function displayAttires(attires) {
@@ -93,25 +96,28 @@ function showLoading(show) {
   displayedAttires = attires;
 
     limitedAttires.forEach(attire => {
-        const img = new Image();
-        img.src = attire.image;
-        img.onerror = () => console.error(`Image not found: ${attire.image}`);
-
-
-      const attireCard = `
+        const attireCard = `
         <div class="attire2">
-        <img src="${attire.image}" alt="${attire.name}">
+        <img src="${attire.image}" alt="${attire.name}" style="width: 100%; height: auto;">
         <div class="layer">
-        <h3>${attire.name}</h3>
+        <h3>${attire.getDisplayName()}</h3>
         <p>${attire.description}</p>
         <p><strong>₦${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
         <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
         </div>
       </div>
-
     `;
     container.innerHTML += attireCard;
   });
+/*
+        const img = new Image();
+        img.src = attire.image;
+        img.onerror = () => console.error(`Image not found: ${attire.image}`);
+*/
+
+
+
+
 
   const seeMoreBtn = document.querySelector("#attire .btn");
   if (seeMoreBtn) {
@@ -165,7 +171,7 @@ function sortAttireByOrder(attires, sortOrder) {
 
   function sortAttire(sortOrder) {
   currentSort = sortOrder;
-  //sortAttireByOrder(displayedAttires, sortOrder);
+  sortAttireByOrder(displayedAttires, sortOrder);
 }
   
 
