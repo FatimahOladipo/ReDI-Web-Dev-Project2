@@ -16,19 +16,61 @@ class Attire {
     }
   }
 
-  const nigerianAttire = [
-    new Attire(1, "Yoruba Aso-Oke", "Yoruba", "Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group in the southwest of Nigeria.", "images/AsoOke.webp", 500, true),
-    new Attire(2, "Igbo Isiagu", "Igbo", "The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. This is made with high-quality suede materials.", "images/Isiagwu.jpg", 400, true),
-    new Attire(3, "Hausa Babaringa", "Hausa", "The traditional dress of the Hausa consists of loose flowing gowns and trousers. The gowns have wide openings on both sides for ventilation.", "images/hausaStyle.webp", 390, true),
-    new Attire(4, "Benin Royal Attire", "Benin", "Benin traditional attire features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.", "images/benin.jpg", 510, false),
-    new Attire(5, "Efik Traditional Dress", "Efik", "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.", "images/AsoOke.webp", 28000, false)
-];
-
+let nigerianAttire = [];
 let displayedAttires = [];
-//let nigerianAttire = [];
 let currentSort = "default";
 let currentFilter = "All";
-let itemsToShow = 3; // Initially show 3 items
+let itemsToShow = 3; 
+
+
+const originalAttireData = [
+    {
+    
+      name: "Yoruba Aso-Oke",
+      ethnic: "Yoruba",
+      description: "Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group in the southwest of Nigeria.",
+      image: "images/AsoOke.webp",
+      price: 500,
+      available: true
+    },
+    {
+    
+      name: "Igbo Isiagu",
+      ethnic: "Igbo",
+      description: "The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. This is made with high-quality suede materials.",
+      image: "images/Isiagwu.jpg",
+      price: 400,
+      available: true
+    },
+    {
+   
+      name: "Hausa Babaringa",
+      ethnic: "Hausa",
+      description: "The traditional dress of the Hausa consists of loose flowing gowns and trousers. The gowns have wide openings on both sides for ventilation.",
+      image: "images/hausaStyle.webp",
+      price: 390,
+      available: true
+    },
+    {
+  
+      name: "Benin Royal Attire",
+      ethnic: "Benin",
+      description: "Benin traditional attire features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.",
+      image: "images/benin.jpg",
+      price: 510,
+      available: false
+    },
+    {
+     
+      name: "Efik Traditional Dress",
+      ethnic: "Efik",
+      description: "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.",
+      image: "images/efikTraditional.jpg",
+      price: 28000,
+      available: false
+    }
+  ];
+
 
 function showLoading(show) {
   const container = document.getElementById("attireContainer");
@@ -49,15 +91,15 @@ function showLoading(show) {
   displayedAttires = attires;
 
   
-    limitedAttires.forEach(attire => {
-        const attireCard = `
+  limitedAttires.forEach(attire => {
+      const attireCard = `
         <div class="attire2">
-        <img src="${attire.image}" alt="${attire.name}" style="width: 100%; height: auto;">
-        <div class="layer">
-        <h3>${attire.getDisplayName()}</h3>
-        <p>${attire.description}</p>
-        <p><strong>₦${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
-        <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+          <img src="${attire.image}" alt="${attire.name}"> 
+          <div class="layer">
+            <h3>${attire.getDisplayName()}</h3>
+            <p>${attire.description}</p>
+            <p><strong>₦${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
+            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
         </div>
       </div>
     `;
@@ -66,18 +108,18 @@ function showLoading(show) {
 
     const seeMoreBtn = document.querySelector("#attire .btn");
   if (seeMoreBtn) {
-    if (itemsToShow < displayedAttires.length) {
-      seeMoreBtn.textContent = "see more";
-      seeMoreBtn.style.display = "inline-block";
-    }else if (itemsToShow > 3) {
-      seeMoreBtn.textContent = "Show less";
-      seeMoreBtn.style.display = "inline-block";
-    } else {
-      seeMoreBtn.style.display = "none";
-    }
+      if (itemsToShow < displayedAttires.length) {
+          seeMoreBtn.textContent = "see more";
+          seeMoreBtn.style.display = "inline-block";
+      } else if (itemsToShow > 3) {
+          seeMoreBtn.textContent = "Show less";
+          seeMoreBtn.style.display = "inline-block";
+      } else {
+          seeMoreBtn.style.display = "none";
+      }
     } else {
         console.error("See more button not found!");
-  }
+    }
   }
 
     function toggleItems() {
@@ -100,6 +142,7 @@ function showLoading(show) {
   itemsToShow = 3;
   sortAttireByOrder(filtered, currentSort);
 }
+
 function sortAttireByOrder(attires, sortOrder) {
   let sorted = [...attires];
   if(sortOrder === "low") {
@@ -126,6 +169,73 @@ function searchAttire() {
     sortAttireByOrder(filtered, currentSort);
 }
 
+async function fetchAttireData() {
+    showLoading(true);
+    try {
+        const response = await fetch("https://dummyjson.com/products?limit=5");
+        if (!response.ok) {
+            throw new Error("Failed to fetch data from API");
+        }
+        const data = await response.json();
+        nigerianAttire = data.products.map((product, index) => {
+        const original = originalAttireData[index % originalAttireData.length];
+        
+            return new Attire(
+                product.id,
+                original.name,          // Use original Nigerian name
+                original.ethnic,        // Use original ethnic group
+                original.description,   // Use original description
+                original.image,         // Use original image
+                original.price,         // Use original price
+                original.available      // Use original availability
+            );
+        });
+        displayAttires(nigerianAttire);
+    } catch (error) {
+        console.error("Error fetching attire data:", error);
+        document.getElementById("attireContainer").innerHTML = "<p style='text-align: center; color: red;'>Failed to load attire data. Please try again later.</p>";
+    } finally {
+        showLoading(false);
+    }
+}
+
+window.onload = () => {
+    fetchAttireData();
+
+    const seeMoreBtn = document.querySelector("#attire .btn");
+    if (seeMoreBtn) {
+        seeMoreBtn.onclick = toggleItems;
+    } else {
+        console.error("Button not found on load!");
+    }
+
+    const searchBtn = document.querySelector(".search-container button");
+    if (searchBtn) {
+        searchBtn.onclick = searchAttire;
+    }
+};
+
+
+/*
+// Define your local images to map to API data
+const localImages = [
+    "images/AsoOke.webp",    // Yoruba
+    "images/Isiagwu.jpg",    // Igbo
+    "images/hausaStyle.webp",// Hausa
+    "images/benin.jpg",      // Benin
+    "images/efiktraditional.jpg"     // Efik (reusing AsoOke.webp as in your original data)
+];*/
+/*
+  const nigerianAttire = [
+    new Attire(1, "Yoruba Aso-Oke", "Yoruba", "Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group in the southwest of Nigeria.", "images/AsoOke.webp", 500, true),
+    new Attire(2, "Igbo Isiagu", "Igbo", "The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. This is made with high-quality suede materials.", "images/Isiagwu.jpg", 400, true),
+    new Attire(3, "Hausa Babaringa", "Hausa", "The traditional dress of the Hausa consists of loose flowing gowns and trousers. The gowns have wide openings on both sides for ventilation.", "images/hausaStyle.webp", 390, true),
+    new Attire(4, "Benin Royal Attire", "Benin", "Benin traditional attire features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.", "images/benin.jpg", 510, false),
+    new Attire(5, "Efik Traditional Dress", "Efik", "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.", "images/efiktraditional.jpg", 28000, false)
+];*/
+
+
+/*
   window.onload = () => {
     showLoading(true);
      try {
@@ -147,7 +257,7 @@ function searchAttire() {
         searchBtn.onclick = searchAttire;
     }
 };
-
+*/
 
 /*
 const nigerianAttire = [
@@ -192,7 +302,7 @@ const nigerianAttire = [
       name: "Efik Traditional Dress",
       ethnic: "Efik",
       description: "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.",
-      image: "images/AsoOke.webp",
+      image: "images/efiktraditional.jpg",
       price: 28000,
       available: false
     }
@@ -253,7 +363,7 @@ const nigerianAttire = [
   { name: "Igbo Isi Agu", category: "Igbo", image: "Isiagwu.jpg" },
   { name: "Hausa Babban Riga", category: "Hausa", image: "hausaStyle.webp" },
   { name: "Benin Royal Wear", category: "Benin", image: "benin.jpg" },
-  { name: "Efik Traditional", category: "Efik", image: "efikstyle.jpg" },
+  { name: "Efik Traditional", category: "Efik", image: "efiktraditional.jpg" },
   
 ];
 
