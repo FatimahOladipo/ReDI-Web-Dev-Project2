@@ -523,6 +523,12 @@ form input:focus, form textarea:focus {
     box-shadow: 0 0 0 2px rgba(255, 0, 79, 0.3);
     background: #333;
 }
+
+#msg {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
 /*
 #msg {
     display: block;

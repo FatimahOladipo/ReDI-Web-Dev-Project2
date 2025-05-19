@@ -75,14 +75,14 @@ const originalAttireData = [
 function showLoading(show) {
   const container = document.getElementById("attireContainer");
   if (show) {
-    container.innerHTML = "<p style='text-align: centre;'>Loading...</p>";
+    container.innerHTML = "<p style='text-align: center;'>Loading...</p>";
   }
 }
 
   function displayAttires(attires) {
     const container = document.getElementById("attireContainer");
     if (!container) {
-      console.error("Attire container not found!");
+        console.error("Attire container not found!");
         return;
     }
     container.innerHTML ="";
@@ -90,7 +90,11 @@ function showLoading(show) {
   const limitedAttires = attires.slice(0, itemsToShow);
   displayedAttires = attires;
 
-  
+  if (limitedAttires.length === 0) {
+        container.innerHTML = "<p style='text-align: center; color: red;'>No matching attire found.</p>";
+        return;
+    }
+
   limitedAttires.forEach(attire => {
       const attireCard = `
         <div class="attire2">
@@ -159,14 +163,35 @@ function sortAttireByOrder(attires, sortOrder) {
 }
   
 function searchAttire() {
-  const searchInput = document.getElementById("searchInput").value.toLowerCase();
-  const filtered = nigerianAttire.filter(item => 
-    item.name.toLowerCase().includes(searchInput) ||
-    item.description.toLowerCase().includes(searchInput) ||
-    item.ethnic.toLowerCase().includes(searchInput)
+    console.log("Search button clicked!"); // Debug log
+    const searchInput = document.getElementById("searchInput");
+    if (!searchInput) {
+        console.error("Search input not found!");
+        return;
+    }
+
+    const searchText = searchInput.value.toLowerCase().trim();
+    console.log(`Search text: "${searchText}"`); // Debug log
+
+    if (!searchText) {
+        displayAttires(nigerianAttire); // Show all if input is empty
+        return;
+    }
+
+    if (nigerianAttire.length === 0) {
+        console.warn("No attire data loaded yet. Please wait...");
+        return;
+    }
+
+    const filtered = nigerianAttire.filter(item =>
+        item.name.toLowerCase().includes(searchText) ||
+        item.description.toLowerCase().includes(searchText) ||
+        item.ethnic.toLowerCase().includes(searchText)
     );
+    console.log(`Found ${filtered.length} matching items`); // Debug log
     itemsToShow = 3;
-    sortAttireByOrder(filtered, currentSort);
+    displayAttires(filtered);
+
 }
 
 async function fetchAttireData() {
@@ -190,6 +215,10 @@ async function fetchAttireData() {
                 original.available      // Use original availability
             );
         });
+
+
+        isDataLoaded = true; // Mark data as loaded
+        console.log("Data loaded successfully:", nigerianAttire);
         displayAttires(nigerianAttire);
     } catch (error) {
         console.error("Error fetching attire data:", error);
@@ -199,6 +228,91 @@ async function fetchAttireData() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM fully loaded, initializing...");
+    fetchAttireData();
+
+    const seeMoreBtn = document.querySelector("#attire .btn");
+    if (seeMoreBtn) {
+      seeMoreBtn.addEventListener("click", toggleItems);
+      } else {
+        console.error("See more button not found!");
+    }
+
+    const searchBtn = document.querySelector(".search-container button");
+    if (searchBtn) {
+        searchBtn.addEventListener("click", searchAttire);
+        console.log("Search button event listener added successfully.");
+    } else {
+        console.error("Search button not found!");
+    }
+
+
+    window.onload = () => {
+    nigerianAttire = originalAttireData.map((data, index) =>
+        new Attire(index, data.name, data.ethnic, data.description, data.image, data.price, data.available)
+    );
+    displayAttires(nigerianAttire);
+};
+const sheetName = 'Form Responses';
+const form = document.forms['submit-to-google-sheet'];
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  
+  
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxuRZKnXgHuRlfa5D7Q31ttTtuQ7hrDuxKX9IcYo_C1dQswKulFM-2lfhpW1bL6PUZP8Q/exec';
+  const form = document.forms["submit-to-google-sheet"];
+  const msg = document.getElementById('msg');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        msg.innerHTML = "Message sent successfully!";
+        msg.style.color = "green";
+        setTimeout(() => msg.innerHTML = "", 5000);
+        form.reset();
+      })
+      .catch(error => {
+        msg.innerHTML = "Error sending message.";
+        msg.style.color = "red";
+        console.error('Error!', error.message);
+      });
+
+  function doPost(e) {
+    const ss = SpreadsheetApp.openById("1tZJf_fV9d0fBpBTMeAIl19kdDJaL0pl1MEIhNKTDrK8");
+    const sheet = ss.getSheetByName("Form Responses"); // adjust name if needed
+
+    const name = e.parameter.name;
+    const email = e.parameter.email;
+    const message = e.parameter.message;
+
+    sheet.appendRow([new Date(), name, email, message]);
+
+    return ContentService.createTextOutput("Success");
+  }
+  
+  });
+
+
+
+
+  fetch("https://script.google.com/macros/s/AKfycbyzDhLoOZLlvkq8Mh0J6HEDtSD5mCHYUdu46fEGETTNzmdmFjvad50ejO4BMfjArPc0ZA/exec", { method: 'POST', body: new FormData(form)})
+  .then(response => {
+    alert("Form submitted successfully!");
+    form.reset();
+  })
+  .catch(error => {
+    console.error("Error!", error.message);
+    alert("Something went wrong!");
+  });
+});
+/*
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyzDhLoOZLlvkq8Mh0J6HEDtSD5mCHYUdu46fEGETTNzmdmFjvad50ejO4BMfjArPc0ZA/exec';*/
+    });
+/*
 window.onload = () => {
     fetchAttireData();
 
@@ -206,15 +320,17 @@ window.onload = () => {
     if (seeMoreBtn) {
         seeMoreBtn.onclick = toggleItems;
     } else {
-        console.error("Button not found on load!");
+        console.error("See more button not found!");
     }
 
     const searchBtn = document.querySelector(".search-container button");
     if (searchBtn) {
         searchBtn.onclick = searchAttire;
+    } else {
+        console.error("Search button not found!");
     }
-};
-
+    
+};*/
 
 /*
 // Define your local images to map to API data
