@@ -8,7 +8,7 @@ FEATURES LIST:
 2. Search by name, description, or ethnic group
 3. Filter by ethnic group and sort by price
 4. "See more"/"Show less" toggle for items
-5. Designer contact section with a form
+5. Designer contact section with a form. The form will be submitted to googlesheet
 6. Clean UI with interactivity via JavaScript
 
 TECHNOLOGIES:

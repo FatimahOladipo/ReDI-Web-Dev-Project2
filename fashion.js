@@ -135,6 +135,8 @@ function showLoading(show) {
     displayAttires(displayedAttires);
   }
 
+
+
   function filterAttire() {
   currentFilter = document.getElementById("attireSelect").value;
   let filtered = nigerianAttire;
@@ -166,12 +168,12 @@ function searchAttire() {
     console.log("Search button clicked!"); // Debug log
     const searchInput = document.getElementById("searchInput");
     if (!searchInput) {
-        console.error("Search input not found!");
+    console.error("Search input not found!");
         return;
     }
 
     const searchText = searchInput.value.toLowerCase().trim();
-    console.log(`Search text: "${searchText}"`); // Debug log
+    //console.log(`Search text: "${searchText}"`); // Debug log
 
     if (!searchText) {
         displayAttires(nigerianAttire); // Show all if input is empty
@@ -188,7 +190,7 @@ function searchAttire() {
         item.description.toLowerCase().includes(searchText) ||
         item.ethnic.toLowerCase().includes(searchText)
     );
-    console.log(`Found ${filtered.length} matching items`); // Debug log
+    //console.log(`Found ${filtered.length} matching items`); // Debug log
     itemsToShow = 3;
     displayAttires(filtered);
 
@@ -203,28 +205,31 @@ async function fetchAttireData() {
         }
         const data = await response.json();
         nigerianAttire = data.products.map((product, index) => {
-        const original = originalAttireData[index % originalAttireData.length];
+        const item = originalAttireData[index % originalAttireData.length];
         
             return new Attire(
                 product.id,
-                original.name,          // Use original Nigerian name
-                original.ethnic,        // Use original ethnic group
-                original.description,   // Use original description
-                original.image,         // Use original image
-                original.price,         // Use original price
-                original.available      // Use original availability
+                item.name,          
+                item.ethnic,        
+                item.description,   
+                item.image,         
+                item.price,         
+                item.available      
             );
         });
 
 
-        isDataLoaded = true; // Mark data as loaded
+
+
+
+       // isDataLoaded = true; // Mark data as loaded
         console.log("Data loaded successfully:", nigerianAttire);
-        displayAttires(nigerianAttire);
+      displayAttires(nigerianAttire);
     } catch (error) {
-        console.error("Error fetching attire data:", error);
-        document.getElementById("attireContainer").innerHTML = "<p style='text-align: center; color: red;'>Failed to load attire data. Please try again later.</p>";
+      console.error("Error fetching attire data:", error);
+      document.getElementById("attireContainer").innerHTML = "<p style='text-align: center; color: red;'>Failed to load attire data. Please try again later.</p>";
     } finally {
-        showLoading(false);
+      showLoading(false);
     }
 }
 
@@ -254,14 +259,12 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     displayAttires(nigerianAttire);
 };
-const sheetName = 'Form Responses';
-const form = document.forms['submit-to-google-sheet'];
+  const sheetName = 'Form Responses';
+  const form = document.forms['submit-to-google-sheet'];
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   
-  
-
   const scriptURL = 'https://script.google.com/macros/s/AKfycbxuRZKnXgHuRlfa5D7Q31ttTtuQ7hrDuxKX9IcYo_C1dQswKulFM-2lfhpW1bL6PUZP8Q/exec';
   const form = document.forms["submit-to-google-sheet"];
   const msg = document.getElementById('msg');
@@ -278,12 +281,12 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
       .catch(error => {
         msg.innerHTML = "Error sending message.";
         msg.style.color = "red";
-        console.error('Error!', error.message);
+        console.error("Form submission error:", error.message);
       });
 
   function doPost(e) {
     const ss = SpreadsheetApp.openById("1tZJf_fV9d0fBpBTMeAIl19kdDJaL0pl1MEIhNKTDrK8");
-    const sheet = ss.getSheetByName("Form Responses"); // adjust name if needed
+    const sheet = ss.getSheetByName("Form Responses");
 
     const name = e.parameter.name;
     const email = e.parameter.email;
