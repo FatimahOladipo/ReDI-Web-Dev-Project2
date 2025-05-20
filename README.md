@@ -38,3 +38,9 @@ USAGE:
 3. Navigate sections (Home, About, etc.)
 4. Works on desktop, tablet, and mobile
 5. Once data is loaded, a grid of Nigerian attires will be displayed, each with an image, name, description, and price.
+
+REFERENCES:
+GreatStack (Youtube);
+Grok;
+chatgpt;
+cluade;
