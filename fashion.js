@@ -15,6 +15,7 @@ class Attire {
     return `${this.name} (${this.ethnic})`;
     }
   }
+  
 
 let nigerianAttire = [];
 let displayedAttires = [];
