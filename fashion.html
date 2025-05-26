@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/fashion.css">
 </head>
 <body>
-    <div class="search-container">
+    <div class="search-container">        
         <input type="text" id="searchInput" placeholder="Search Nigerian attire...">
-        <button onclick="searchAttire()"><i class="fa fa-search"></i></button>
-       <!-- <button><i class="fa fa-search"></i></button> -->
+        <button id="searchBtn"><i class="fa fa-search"></i></button>
+        
     </div>
     <div id="header">
         <div class="container">
@@ -25,16 +25,16 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#Nigerian Attire">Nigerian Attire</a></li>
                     <li><a href="#contact">Contact</a></li>
-                   <!-- <i class="fa-solid fa-xmark" onclick="closemenu()"></i>-->
+                   
                 </ul>
-               <!-- <i class="fa-solid fa-bars" onclick="openmenu()"></i>-->
+         
             </nav>
 
             <div class="header-text">
                 <p>Nigerian Fashion Stylist | Fashion Designer</p>
                 <h1>Hello, I'm <span>Fatimah</span><br>
-                Welcome to the <strong>Nigerian Fashion Explorer</strong> - your gateway to one of the fastest-growing trends in global African fashion. </h1>
-                <!--<a href="#btn" class="btn">View My Work</a> -->
+                Welcome to the <strong>Nigerian Fashion Explorer App</strong> - your gateway to one of the fastest-growing trends in global African fashion. </h1>
+              
             </div>
         </div>
     </div>
@@ -72,17 +72,9 @@
         <h1 class="sub-title">Nigerian attire</h1>
         
         
-   <!--
-            <div class="filter-controls">
-                    <button onclick="filterAttire('all')">All</button>
-                    <button onclick="filterAttire('Yoruba')">Yoruba</button>
-                    <button onclick="filterAttire('Igbo')">Igbo</button>
-                    <button onclick="filterAttire('Hausa')">Hausa</button> 
-
-            </div> --->
-            
-            <!--<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">--> 
-            <select id="attireSelect" onchange="filterAttire()">
+  
+            <!--<select id="attireSelect" onchange="filterAttire()">-->
+            <select id="ethnicFilter" onchange="filterAttire()" class="filter-select">
                 <option value="All">All</option>
                 <option value="Yoruba">Yoruba</option>
                 <option value="Igbo">Igbo</option>
@@ -94,67 +86,25 @@
             
          <div id="attireContainer" class="attire-list"></div>
             
-
-            
-         <!--  <div class="attire-list"> --><!--- javascript--> 
-            <div class="sort-controls">
+      
+            <div id="sortSelect" class="filter-select">
                 <label>Sort by: </label>
                 <select onchange="sortAttire(this.value)">
-                    <option value="default">Default</option>
-                    <option value="low">Low to High</option>
-                    <option value="high">High to Low</option>
+                    <option value="default">Default Order</option>
+                    <option value="low">Cheapest First</option>
+                    <option value="high">Most Expensive</option>
                 </select>
-            </div> 
 
-       <!--
-            <div class="attire-list">
-            <div class="attire2">
-                <img src="images/AsoOke.webp" alt="Yoruba Traditional Attire">
-                <div class="layer">
-                    <h3>Yoruba Traditional Attire</h3>
-                    <p>Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group 
-                    in the southwest of Nigeria. Over the years, it has successfully held its own as 
-                    the special occasion faric of the Yoruba.</p>
-                    <p><strong>Price: ₦500</strong> | Available</p>
-                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-  
-        
-            <div class="attire2">
-                <img src="images/Isiagwu.jpg" alt="Igbo Traditional Attire">
-                <div class="layer">
-                    <h3>Igbo Traditional Attire</h3>
-                    <p>The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. 
-                    This is made with high-quality suede materials. Why not make it a point to 
-                    attend an Igbo traditional wedding and experience one of Nigeria's richest cultures.</p>
-                    <p><strong>Price: ₦400</strong> | Available</p>
-                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-        
 
-            <div class="attire2">
-                <img src="images/hausaStyle.webp" alt="Hausa Traditional Attire">
-                <div class="layer">
-                    <h3>Hausa Traditional Attire</h3>
-                    <p>The traditional dress of the Hausa consists of loose flowing gowns and trousers. 
-                    The gowns have wide openings on both sides for ventilation. The trousers are loose 
-                    at the top and center, but rather tight around the legs. Leather sandals and turbans 
-                    are also typical.</p>
-                    <p><strong>Price: ₦390</strong> | Available</p>
-                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-        -->
-
-        </div>
-        <!--<a href="#" class="btn" onclick="showMore()">See more</a> -->
-        <a href="#" class="btn">See more</a> 
-
-        
+</div> 
+       
+       <a href="#" class="btn">See more</a>
+      <!-- <div id="loadingMessage" class="btn" style="display: none;"></div> 
+       <i class="fa fa-spinner"></i>
+       Loading amazing clothes for you...
+   </div>
     </div>
-</div>
+
 
 <!-----------------------contact-------------------->
    
@@ -165,7 +115,7 @@
             <div class="contact-info">
               <h1 class="sub-title">Contact Us</h1>
               <p class="contactme">contact me if you are interested in any of our designs or download our form here</p>
-              <p><i class="fa-solid fa-paper-plane"></i>contact@example.com</p>  
+              <p><i class="fa-solid fa-paper-plane"></i>mycontact@practice.com</p>  
               <p><i class="fa-solid fa-phone"></i>0123456789</p>
               <div class="social-icons">
                 <a href="https://facebook.com/"><i class="fab fa-facebook"></i></a>
@@ -173,18 +123,17 @@
                 <a href=""><i class="fab fa-instagram"></i></a>
                 <a href=""><i class="fab fa-linkedin"></i></a>
               </div>
-             <!--<a href="#" class="btn btn2">Download form</a>-->
+           
              <a href="images/Customer Order Form.pdf" download class="btn btn2">Download form</a>
             </div> 
             <div class="contact-media">
-                <!---<form name="submit-to-google-sheet">---->
+                
                      <form id="contactForm" name="submit-to-google-sheet" method="POST">
-                   <!-- <form id="contactForm" name="submit-to-google-sheet" method="POST" action="https://script.google.com/macros/s/AKfycbyzDhLoOZLlvkq8Mh0J6HEDtSD5mCHYUdu46fEGETTNzmdmFjvad50ejO4BMfjArPc0ZA/exec"> -->
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
-                    <!--<button type="submit">Submit</button> -->
+
                 </form>
                 <span id="msg"></span> 
 
@@ -201,10 +150,7 @@
 
     <script src="fashion.js"></script>
     
-    <script>
 
-
-    </script>
 </body>
 </html>
 

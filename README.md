@@ -14,6 +14,11 @@ FEATURES LIST:
 8. Responsive design compatible with various devices
 9. Navigation menu with toggle functionality for mobile view
 
+
+JavaScript Features Covered:
+1. Object-Oriented Programming
+a. Class attire with constructor and methods
+
 TECHNOLOGIES:
 1. HTML5, CSS3, JavaScript (Interactivity, DOM manipulation, and API handling)
 2. DummyJSON API: External API for fetching product data
@@ -33,14 +38,16 @@ cd "C:\Users\Fatimah\Desktop\Nigerian Fashion\ReDI-Web-Dev-Project2"
 
 USAGE:
 
-1. Explore the gallery, filter/sort items, search for attire
+1. Explore the gallery, filter/sort items, search for attire. The page loads beautiful Nigerian traditional clothes
 2. Contact the designer via the form. The form can be filled and submitted to googlesheet or downloaded
 3. Navigate sections (Home, About, etc.)
 4. Works on desktop, tablet, and mobile
 5. Once data is loaded, a grid of Nigerian attires will be displayed, each with an image, name, description, and price.
+6. Click "Show More" to see additional items.
+7. Learn about different Nigerian cultures through descriptions
 
 REFERENCES:
 GreatStack (Youtube);
 Grok;
 chatgpt;
-cluade;
+claude;
