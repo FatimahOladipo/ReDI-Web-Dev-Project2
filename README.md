@@ -8,7 +8,7 @@ FEATURES LIST:
 2. Search by name, description, or ethnic group
 3. Filter by ethnic group and sort by price
 4. "See more"/"Show less" toggle for items
-5. Designer contact section with a form. The form will be submitted to googlesheet.
+5. Designer contact section with a form. The form will be submitted to   googlesheet.
 6. Contact form can be downloaded as well
 7. Clean UI with interactivity via JavaScript
 8. Responsive design compatible with various devices
@@ -17,7 +17,43 @@ FEATURES LIST:
 
 JavaScript Features Covered:
 1. Object-Oriented Programming
-a. Class attire with constructor and methods
+a. Class attire with constructor and method.
+
+2. Array Manipulation
+a. Converted API data to clothing objects map()
+b. Searching and filtering clothes filter()
+c. Organizing clothes by price/name sort()
+d. Showing limited number of items slice()
+
+3. Functions & Arrow Functions
+a. Regular functions for main operations
+b. Arrow functions in array methods like filter((attire) => ...)
+c. Async functions for API calls
+
+4. DOM Manipulation
+a. Getting elements with getElementById()
+b. Changing content with innerHTML and textContent
+c. Modifying styles and classes
+
+5. Event Handling
+a. Click events for buttons
+b. Change events for dropdowns
+c. Keyup events for search-as-you-type
+d. DOMContentLoaded event for initialization
+
+6. Asynchronous Programming
+a. async/await for API calls
+b. Promises with fetch API
+c. setTimeout()for delayed actions
+
+7.  API Integration
+a. Uses Uses dummyjson API as required
+b. Proper error handling with try/catch
+
+8.  Error Handling
+a. Try/catch blocks for API requests
+b. User-friendly error messages
+
 
 TECHNOLOGIES:
 1. HTML5, CSS3, JavaScript (Interactivity, DOM manipulation, and API handling)
@@ -36,8 +72,8 @@ cd "C:\Users\Fatimah\Desktop\Nigerian Fashion\ReDI-Web-Dev-Project2"
 3. Add images to an images folder (or use API thumbnails)
 4. Open index.html in a browser or use a local server
 
-USAGE:
 
+USAGE:
 1. Explore the gallery, filter/sort items, search for attire. The page loads beautiful Nigerian traditional clothes
 2. Contact the designer via the form. The form can be filled and submitted to googlesheet or downloaded
 3. Navigate sections (Home, About, etc.)

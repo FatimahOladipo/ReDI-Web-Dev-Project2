@@ -168,41 +168,10 @@ function sortAttireByOrder(attires, sortOrder) {
   currentSort = sortOrder;
   sortAttireByOrder(displayedAttires, sortOrder);
 }
-/*
-function searchAttire() {
-  const text = document.getElementById("searchInput").value.toLowerCase().trim();
-  
-  if (!text) return displayAttires(nigerianAttire);
-  const results = nigerianAttire.filter(i =>
-    item.name.toLowerCase().includes(text) ||
-    item.description.toLowerCase().includes(text) ||
-    item.ethnic.toLowerCase().includes(text)
-  );
-  itemsToShow = 3;
-  displayAttires(results);
 
-}*/
-/*
-function searchAttires() {
-    const searchText = document.getElementById('searchInput').value.toLowerCase().trim();
-            
-    if (!searchText) {
-        applyAllFilters();
-        return;
-    }
-    const filteredAttires = allAttires.filter(attire => 
-        attire.name.toLowerCase().includes(searchText) ||
-        attire.description.toLowerCase().includes(searchText) ||
-        attire.ethnic.toLowerCase().includes(searchText)
-            );
-
-            itemsToShow = 3;
-            displayAttires(filteredAttires);
-        }
-*/
   
 function searchAttire() {
-   // console.log("Search button clicked!"); 
+    console.log("Search button clicked!"); 
     const searchInput = document.getElementById("searchInput");
     if (!searchInput) {
     console.error("Search input not found!");
@@ -231,6 +200,11 @@ function searchAttire() {
     itemsToShow = 3;
     displayAttires(filtered);
 
+}
+
+function showError(message) {
+  const container = document.getElementById("attireContainer");
+  container.innerHTML = `<p style='text-align: center; color: red;'>${message}</p>`;
 }
 
 
@@ -278,23 +252,7 @@ async function fetchAttireData() {   // fetchClothesFromAPI
       showLoading(false);
     }
 }
-/*
-} catch (error) {
-                // ERROR HANDLING: If something goes wrong
-                console.error('😢 Error loading clothes:', error);
-                showError('Oops! Could not load clothes from the internet. Showing sample clothes instead.');
-                
-                // Use sample data as backup
-                allAttires = sampleClothesData.map((data, index) => 
-                    new NigerianAttire(index, data.name, data.ethnic, data.description, data.image, data.price, data.available)
-                );
-                displayAttires(allAttires);
-                
-            } finally {
-                // This always runs, whether we succeed or fail
-                showLoading(false);
-            }
-        }*/
+
 
 // EVENT HANDLING: When the page loads, set everything up
 document.addEventListener("DOMContentLoaded", function() {
@@ -307,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('searchInput').addEventListener('keyup', function(event) {
        if (event.key === 'Enter') {
-           searchAttires();
+           searchAttire();
        }
   });
 
@@ -319,23 +277,16 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("See more button not found!");
     }
 
-/*
+
     const searchBtn = document.querySelector(".search-container button");
     if (searchBtn) {
         searchBtn.addEventListener("click", searchAttire);
         console.log("Search button event listener added successfully.");
     } else {
         console.error("Search button not found!");
-    }*/ /**/ 
+    }
 
 
-/*
-    window.onload = () => {
-    nigerianAttire = originalAttireData.map((data, index) =>
-        new Attire(index, data.name, data.ethnic, data.description, data.image, data.price, data.available)
-    );
-    displayAttires(nigerianAttire);
-};*/
 
   const sheetName = 'Form Responses';
   const form = document.forms['submit-to-google-sheet'];
@@ -360,193 +311,6 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
    });
 });
-/*
-document.addEventListener("DOMContentLoaded", () => {
-    // ... existing code ...
-    const menuToggle = document.createElement("div");
-    menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
-    menuToggle.className = "menu-toggle";
-    nav.insertBefore(menuToggle, nav.querySelector("ul"));
-    menuToggle.addEventListener("click", () => {
-        nav.querySelector("ul").classList.toggle("show");
-    });
-});*/
-
-/*
-  
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxuRZKnXgHuRlfa5D7Q31ttTtuQ7hrDuxKX9IcYo_C1dQswKulFM-2lfhpW1bL6PUZP8Q/exec';
-  const form = document.forms["submit-to-google-sheet"];
-  const msg = document.getElementById('msg');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-      .then(response => {
-        msg.innerHTML = "Message sent successfully!";
-        msg.style.color = "green";
-        setTimeout(() => msg.innerHTML = "", 5000);
-        form.reset();
-      })
-      .catch(error => {
-        msg.innerHTML = "Error sending message.";
-        msg.style.color = "red";
-        console.error("Form submission error:", error.message);
-      });
-
-      });
-*/
-/*
-  function doPost(e) {
-    const ss = SpreadsheetApp.openById("1tZJf_fV9d0fBpBTMeAIl19kdDJaL0pl1MEIhNKTDrK8");
-    const sheet = ss.getSheetByName("Form Responses");
-
-    const name = e.parameter.name;
-    const email = e.parameter.email;
-    const message = e.parameter.message;
-
-    sheet.appendRow([new Date(), name, email, message]);
-
-    return ContentService.createTextOutput("Success");
-  }
-  
-  });
-*/
-
-/*
-
-  fetch("https://script.google.com/macros/s/AKfycbyzDhLoOZLlvkq8Mh0J6HEDtSD5mCHYUdu46fEGETTNzmdmFjvad50ejO4BMfjArPc0ZA/exec", { method: 'POST', body: new FormData(form)})
-  .then(response => {
-    alert("Form submitted successfully!");
-    form.reset();
-  })
-  .catch(error => {
-    console.error("Error!", error.message);
-    alert("Something went wrong!");
-  });*/
-
-/*
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyzDhLoOZLlvkq8Mh0J6HEDtSD5mCHYUdu46fEGETTNzmdmFjvad50ejO4BMfjArPc0ZA/exec';*/
-    
-/*
-window.onload = () => {
-    fetchAttireData();
-
-    const seeMoreBtn = document.querySelector("#attire .btn");
-    if (seeMoreBtn) {
-        seeMoreBtn.onclick = toggleItems;
-    } else {
-        console.error("See more button not found!");
-    }
-
-    const searchBtn = document.querySelector(".search-container button");
-    if (searchBtn) {
-        searchBtn.onclick = searchAttire;
-    } else {
-        console.error("Search button not found!");
-    }
-    
-};*/
-
-/*
-// Define your local images to map to API data
-const localImages = [
-    "images/AsoOke.webp",    // Yoruba
-    "images/Isiagwu.jpg",    // Igbo
-    "images/hausaStyle.webp",// Hausa
-    "images/benin.jpg",      // Benin
-    "images/efiktraditional.jpg"     // Efik (reusing AsoOke.webp as in your original data)
-];*/
-/*
-  const nigerianAttire = [
-    new Attire(1, "Yoruba Aso-Oke", "Yoruba", "Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group in the southwest of Nigeria.", "images/AsoOke.webp", 500, true),
-    new Attire(2, "Igbo Isiagu", "Igbo", "The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. This is made with high-quality suede materials.", "images/Isiagwu.jpg", 400, true),
-    new Attire(3, "Hausa Babaringa", "Hausa", "The traditional dress of the Hausa consists of loose flowing gowns and trousers. The gowns have wide openings on both sides for ventilation.", "images/hausaStyle.webp", 390, true),
-    new Attire(4, "Benin Royal Attire", "Benin", "Benin traditional attire features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.", "images/benin.jpg", 510, false),
-    new Attire(5, "Efik Traditional Dress", "Efik", "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.", "images/efiktraditional.jpg", 28000, false)
-];*/
-
-
-/*
-  window.onload = () => {
-    showLoading(true);
-     try {
-        displayAttires(nigerianAttire); 
-  } catch (error) {
-    console.error("Error fetching attire data:", error);
-    document.getElementById("attireContainer").innerHTML = "<p style='text-align: center; color: red;'>Failed to load attire data. Please try again later.</p>";
-  } finally {
-  showLoading(false);
-  }
-
-  const seeMoreBtn = document.querySelector("#attire .btn");
-    if (seeMoreBtn) {
-        seeMoreBtn.onclick = toggleItems;
-    }
-
-  const searchBtn = document.querySelector(".search-container button");
-    if (searchBtn) {
-        searchBtn.onclick = searchAttire;
-    }
-};
-*/
-
-/*
-const nigerianAttire = [
-    {
-      id: 1,
-      name: "Yoruba Aso-Oke",
-      ethnic: "Yoruba",
-      description: "Aso-Oke is the prestigious hand-woven cloth of the Yoruba, a major ethnic group in the southwest of Nigeria.",
-      image: "images/AsoOke.webp",
-      price: 500,
-      available: true
-    },
-    {
-      id: 2,
-      name: "Igbo Isiagu",
-      ethnic: "Igbo",
-      description: "The Igbo men traditional attire is called Isiagu, also known as Chieftaincy. This is made with high-quality suede materials.",
-      image: "images/Isiagwu.jpg",
-      price: 400,
-      available: true
-    },
-    {
-      id: 3,
-      name: "Hausa Babaringa",
-      ethnic: "Hausa",
-      description: "The traditional dress of the Hausa consists of loose flowing gowns and trousers. The gowns have wide openings on both sides for ventilation.",
-      image: "images/hausaStyle.webp",
-      price: 390,
-      available: true
-    },
-    {
-      id: 4,
-      name: "Benin Royal Attire",
-      ethnic: "Benin",
-      description: "Benin traditional attire features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.",
-      image: "images/benin.jpg",
-      price: 510,
-      available: false
-    },
-    {
-      id: 5,
-      name: "Efik Traditional Dress",
-      ethnic: "Efik",
-      description: "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.",
-      image: "images/efiktraditional.jpg",
-      price: 28000,
-      available: false
-    }
-  ];
- */
-
-
-
-/*
-        const img = new Image();
-        img.src = attire.image;
-        img.onerror = () => console.error(`Image not found: ${attire.image}`);
-*/
 
 
 
@@ -558,74 +322,3 @@ const nigerianAttire = [
 
 
 
-
-
-
-
-
-
-
-
-
-/*
-  window.onload = function () {*/
-
-
-
-
-  
-
-    
-    /*function searchAttire() {
-    console.log("Search functionality not implemented yet!");*/
-
-
-/*
-  
-  // Simple verification that the array is working
-console.log("Nigerian Attire array loaded successfully!");
-console.log("Number of attire:", nigerianAttire.length);
-
-// You can add more code here as needed to use the array data
-
-
-const nigerianAttire = [
-  { name: "Yoruba Aso Oke", category: "Yoruba", image: "yorubaAsoOke.webp" },
-  { name: "Igbo Isi Agu", category: "Igbo", image: "Isiagwu.jpg" },
-  { name: "Hausa Babban Riga", category: "Hausa", image: "hausaStyle.webp" },
-  { name: "Benin Royal Wear", category: "Benin", image: "benin.jpg" },
-  { name: "Efik Traditional", category: "Efik", image: "efiktraditional.jpg" },
-  
-];
-
-function filterAttire() {
-  const selected = document.getElementById("attireSelect").value;
-
-  const filtered = selected === "All"
-  ? nigerianAttire
-  : nigerianAttire.filter(item => item.category === selected);
-  displayAttires(nigerianAttire);
-}
-
-*/
-
-
-
-
-
-
-
-/*
-//filter
-const filterAttires = ["All", "Yoruba", "Igbo", "Hausa", "Benin", "Efik"];
-
-function filterAttire(){
-  const selected = document.getElementById("attireSelect").value;
-
-  const result = selected === "All"
-  ? filterAttires
-  : filterAttires.filter(attire => attire === selected);
-  document.getElementById("attireSelect").innerHTML = result.join(", ");
-}
-
-*/
