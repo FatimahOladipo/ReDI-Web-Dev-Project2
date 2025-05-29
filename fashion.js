@@ -18,7 +18,6 @@ class NigerianAttire {
         
   }
   
-
 let nigerianAttire = [];
 let displayedAttires = [];
 let currentSort = "default";
@@ -178,7 +177,7 @@ function searchAttire() {
     }
 
     const searchText = searchInput.value.toLowerCase().trim();
-   // console.log(`Search text: "${searchText}"`); 
+
 
     if (!searchText) {
         displayAttires(nigerianAttire); 

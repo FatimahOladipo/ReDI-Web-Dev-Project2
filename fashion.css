@@ -106,8 +106,6 @@ transform: scale(1.05);
     font-size: 18px; 
     line-height: 1.4; 
     max-width: 350px;
-    /*margin-bottom: 30px; 
-    margin-top: 20px;*/
     color: lime;
 }
 .header-text h1 span{
@@ -137,7 +135,6 @@ transform: scale(1.05);
 .line2 img{
     width: 100%;
     margin: 0 auto;
-    /*margin-bottom: 0px;*/
     max-width: 300%;
     height: auto;
     display: block;
