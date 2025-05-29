@@ -33,7 +33,7 @@ const originalAttireData = [
       ethnic: "Yoruba",
       description: "Aso-Oke is the prestigious hand-woven cloth with amazing patterns and bright colors. Worn by Yoruba people for special celebrations. Yoruba is a major ethnic group in the southwest of Nigeria.",
       image: "images/AsoOke.webp",
-      price: 500,
+      price: 530,
       available: true
     },
     {
@@ -69,7 +69,7 @@ const originalAttireData = [
       ethnic: "Efik",
       description: "Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.",
       image: "images/efikTraditional.jpg",
-      price: 28000,
+      price: 280,
       available: false
     }
   ];
@@ -105,7 +105,7 @@ function showLoading(show) {
           <div class="layer">
             <h3>${attire.getDisplayName()}</h3>
             <p>${attire.description}</p>
-            <p><strong>₦${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
+            <p><strong>$${attire.price}</strong> | ${attire.available ? "Available" : "Out of Stock"}</p>
             <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
         </div>
       </div>
@@ -136,9 +136,9 @@ function showLoading(show) {
       itemsToShow += 2;
     }
     displayAttires(displayedAttires);
+
+  document.getElementById("attireSection").scrollIntoView({ behavior: 'smooth' });
   }
-
-
   function filterAttire() {
   currentFilter = document.getElementById("ethnicFilter").value;
   let filtered = nigerianAttire;
@@ -304,14 +304,6 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
    });
 });
-
-
-
-
-
-
-
-
 
 
 

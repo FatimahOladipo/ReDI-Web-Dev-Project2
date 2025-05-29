@@ -22,8 +22,8 @@
                 <ul id="sidemenu">
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#Nigerian Attire">Nigerian Attire</a></li>
+                    <li><a href="#contactForm">contactForm</a></li>
+                    <li><a href="#attireSection">Nigerian Attire</a></li>
                     <li><a href="#contact">Contact</a></li>
                    
                 </ul>
@@ -32,10 +32,15 @@
 
             <div class="header-text">
                 <p>Nigerian Fashion Stylist | Fashion Designer</p>
-                <h1>Hello, I'm <span>Fatimah</span><br>
-                Welcome to the <strong>Nigerian Fashion Explorer App</strong> - your gateway to one of the fastest-growing trends in global African fashion. </h1>
+                <h1 class="header-text">Hello, I'm <span>Fatimah</span> Welcome to the <strong>Nigerian Fashion Explorer</strong> - your gateway to one of the fastest-growing trends in global African fashion.</h1>
+</div>
+<!--
+            <div class="header-text">
+                <p>Nigerian Fashion Stylist | Fashion Designer</p>
+                <h1>Hello, I'm <span>Fatimah</span>
+                Welcome to the <strong>Nigerian Fashion Explorer</strong> - your gateway to one of the fastest-growing trends in global African fashion. </h1>
               
-            </div>
+            </div> -->
         </div>
     </div>
     
@@ -46,17 +51,25 @@
                     
                     <div class="line1">
                     <div class="line2">
-                    <img src="images/benin.jpg" alt="Benin attire">
+                    <img src="images/sample.jpeg" alt="Aso Oke">
                     </div>
                     <div class="about-col-2">
                     <h1 class="sub-title">About</h1>
-                    <p>Yoruba men wear agbada, which is a formal attire, commonly worn as part of a 
-                    three-piece set: an open-stitched full gown, a long-sleeved shirt, and sokoto 
+                    <br>
+                    <p>Yoruba women wear Iro (wrapper) and Buba (blouse) with Gele (head tie), men wear agbada, which is a formal attire, commonly worn as part of a 
+                    <br>
+                    Three-piece set: An open-stitched full gown, a long-sleeved shirt, and sokoto 
                     (trousers fitted snugly at the ankle) <br> 
-                    The Hausa wear Babaringa similar to a dashiki that is worn by many groups in 
+                    <br>
+                    The Hausa wear Babaringa similar to a Dashiki that is worn by many groups in 
                     Africa. <br>
-                    The traditional attire of Igbo men includes an isiagu patterned with embroidered 
-                    lion heads, usually worn with trousers and a traditional striped hat. </p>
+                    <br>
+                    The traditional attire of Igbo men includes an Isiagu patterned with embroidered 
+                    Lion heads, usually worn with trousers and a traditional striped hat. </p>
+                    <br>
+                    Benin traditional attire clothes fit for a King or Queen, features coral beads, rich fabrics, and royal symbols reflecting the kingdom's heritage.
+                    <br>
+                    Efik attire features beautiful patterns and designs, often worn during ceremonies and celebrations.
                     <a href="#attire" class="btn">Explore Attire</a>
 
         </div>
@@ -66,11 +79,13 @@
 
     
     <!--------------attire---------------------->
- 
-<div id="attire">
-    <div class="container">
-        <h1 class="sub-title">Nigerian attire</h1>
+
+ <div id="attireSection">
+    <div id="attire">
+        <div class="container">
+            <h1 class="sub-title">Nigerian attire</h1>
         
+            <div class="controls">
             <select id="ethnicFilter" onchange="filterAttire()" class="filter-select">
                 <option value="All">All</option>
                 <option value="Yoruba">Yoruba</option>
@@ -81,7 +96,9 @@
             </select>
             
             
-         <div id="attireContainer" class="attire-list"></div>
+         
+            
+         </div>
             
       
             <div id="sortSelect" class="filter-select">
@@ -91,12 +108,38 @@
                     <option value="low">Cheapest First</option>
                     <option value="high">Most Expensive</option>
                 </select>
+            </div>
+         </div>
 
+         <div id="attireContainer" class="attire-list">
+            <div class="attire-card">
+                <img src="images/yoruba.jpg" alt="Yoruba attire">
+                <p>Yoruba Aso-Oke</p>
+            </div>
+            <div class="attire-card">
+                <img src="images/Isiagwu.jpg" alt="Igbo Isiagu">
+                <p>Igbo Isiagu</p>
+            </div>
+            <div class="attire-card">
+                <img src="images/hausaStyle.webp" alt="Hausa Babaringa">
+                <p>Hausa Babaringa</p>
+            </div>
+            <div class="attire-card">
+                <img src="images/benin.jpg" alt="Benin Royal Attire">
+                <p>Benin Royal Wear</p>
+            </div>
+            <div class="attire-card">
+                <img src="images/efikTraditional.jpg" alt="Efik Traditional Dress">
+                <p>Efik Traditional Dress</p>
+                </div>
+            </div>
 
-</div> 
+                <button class="btn">See more</button>
+
+            </div> 
+    </div>
+</div>
        
-       <a href="#" class="btn">See more</a>
-
 
 <!-----------------------contact-------------------->
    
@@ -121,14 +164,13 @@
             <div class="contact-media">
                 
                      <form id="contactForm" name="submit-to-google-sheet" method="POST">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="4" placeholder="Your Message" required></textarea>
+                    <input type="text" name="Name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="Message" rows="4" placeholder="Message" required></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
 
                 </form>
                 <span id="msg"></span> 
-
 
 
             </div>

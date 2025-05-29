@@ -11,7 +11,7 @@ html{
 
 body{
     background: #080808;
-    color: #fff;
+    color: #ffbf00f1
 }
 
 #header{
@@ -95,19 +95,28 @@ transform: scale(1.05);
 }
 
 .header-text p{
+    flex-wrap: nowrap;
     font-size: 20px;
     margin-bottom: 20px;
+    
     
 }
 
 .header-text h1{
-    font-size: 32px; 
-    margin-bottom: 30px; 
-    margin-top: 20px;
+    font-size: 18px; 
+    line-height: 1.4; 
+    max-width: 350px;
+    /*margin-bottom: 30px; 
+    margin-top: 20px;*/
     color: lime;
 }
 .header-text h1 span{
     color: #ffbf00f1;
+    font-weight: bold;
+}
+
+.header-text h1 strong {
+  color: lime;
 }
 
   /*----------------------------about---------------------------*/
@@ -126,8 +135,10 @@ transform: scale(1.05);
 
 
 .line2 img{
-    margin-bottom: 0px;
-    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /*margin-bottom: 0px;*/
+    max-width: 300%;
     height: auto;
     display: block;
     border-radius: 10px;
@@ -141,13 +152,15 @@ transform: scale(1.05);
 
 .about-col-2{
    flex: 2;
+   color: lemonchiffon
+   
 }
 
 .sub-title{
     margin-top: 0px;
     font-size: 40px;
     font-weight: 600;
-    color: #fff;
+    color: #ffbf00f1;
     position: relative;
     padding-bottom: 10px;
 }
@@ -184,24 +197,19 @@ transform: scale(1.05);
     opacity: 1;
 }
 
-
-.attire-list{
-    display: grid;
-    position: relative;
-    border-radius: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    grid-gap: 40px;
-    margin-top: 50px;
-
+.attire-list {
+    display: flex;
+    flex-wrap: wrap;               
+    justify-content:center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
-.attire img{
-    width: 100%;
-    height: 100%; 
-    border-radius: 10px;
-    display: block;
-    transition: transform 0.5s;
+
+.attire-card {
+     flex: 0 1 30%;
+     margin-bottom: 20px;
 }
+
 
 .attire2 img {
     width: 100%;
@@ -220,6 +228,7 @@ transform: scale(1.05);
     background: linear-gradient(rgba(0,0,0,0.5), gold);
     border-radius: 10px;
     position: absolute;
+    color: #fff;
     left: 0;
     bottom: 0;
     overflow: hidden;
@@ -243,11 +252,11 @@ transform: scale(1.05);
 
 .layer a{
     margin-top: 20px;
-    color: gold;
+    color: #fff;
     text-decoration: none;
     font-size: 18px;
     line-height: 60px;
-    background: #fff;
+    background: coral;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -276,6 +285,19 @@ transform: scale(1.05);
     font-size: 16px;
     text-align: center;
     line-height: 1.5;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    margin-bottom: 20px;
+}
+
+.controls select,
+.controls label {
+    font-size: 1rem;
+    padding: 5px 10px;
 }
 
 
@@ -359,7 +381,7 @@ transform: scale(1.05);
     border: 1px solid gold;
     font-size: 16px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color:#ffbf00f1;
     margin: 20px 0;
     cursor: pointer;
     outline: none;
@@ -381,7 +403,7 @@ transform: scale(1.05);
 }
 
 #sortSelect label {
-    color: #fff;
+    color: #ffbf00f1;
     font-size: 16px;
 }
 
@@ -457,14 +479,14 @@ form input, form textarea{
     background: #262626;
     padding: 15px;
     margin: 10px 0;
-    color: #fff;
+    color: #ffbf00f1;
     font-size: 18px;
     border-radius: 6px;
    
 }
 
 form input:focus, form textarea:focus {
-    box-shadow: 0 0 0 2px rgba(255, 0, 79, 0.3);
+    box-shadow: 0 0 0 2px rgba(255, 0, 81, 0.384);
     background: #333;
 }
 
@@ -531,10 +553,7 @@ form .btn2{
     }
 
     @media screen and (max-width: 320px) {
-        .nav-toggle {
-            display: block;
-        }
-        
+ 
         nav ul {
             display: none;
             position: fixed;
