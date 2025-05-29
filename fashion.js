@@ -1,5 +1,5 @@
 
-//constructor in Java is a special method that is used to initialize objects. 
+
 class NigerianAttire {
   constructor(id, name, ethnic, description, image, price, available) {
     this.id = id;
@@ -139,7 +139,6 @@ function showLoading(show) {
   }
 
 
-
   function filterAttire() {
   currentFilter = document.getElementById("ethnicFilter").value;
   let filtered = nigerianAttire;
@@ -196,7 +195,7 @@ function searchAttire() {
         item.description.toLowerCase().includes(searchText) ||
         item.ethnic.toLowerCase().includes(searchText)
     );
-   // console.log(`Found ${filtered.length} matching items`); // Debug log
+   
     itemsToShow = 3;
     displayAttires(filtered);
 
@@ -205,13 +204,14 @@ function searchAttire() {
 function showError(message) {
   const container = document.getElementById("attireContainer");
   container.innerHTML = `<p style='text-align: center; color: red;'>${message}</p>`;
+  
 }
 
 
-async function fetchAttireData() {   // fetchClothesFromAPI
+async function fetchAttireData() {   
     showLoading(true);
 
-    try {  //promise
+    try {  
         const response = await fetch("https://dummyjson.com/products?limit=5");
         if (!response.ok) {
             throw new Error("Failed to fetch data from API/Could not get clothes from the internet");
@@ -238,11 +238,7 @@ async function fetchAttireData() {   // fetchClothesFromAPI
     } catch (error) {
       console.error("Error loading clothes:", error);
       showError('Oops! Could not load clothes from the internet. Showing sample clothes instead.');
-     
-     // document.getElementById("attireContainer").innerHTML = "<p style='text-align: center; color: red;'>Failed to load attire data. Please try again later.</p>";
    
-                   
-      // Use sample data as backup
         nigerianAttire = originalAttireData.map((data, index) => 
             new NigerianAttire(index, data.name, data.ethnic, data.description, data.image, data.price, data.available)
         );
@@ -253,8 +249,6 @@ async function fetchAttireData() {   // fetchClothesFromAPI
     }
 }
 
-
-// EVENT HANDLING: When the page loads, set everything up
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Starting Nigerian Fashion Explorer!");
     
@@ -285,7 +279,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("Search button not found!");
     }
-
 
 
   const sheetName = 'Form Responses';

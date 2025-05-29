@@ -83,7 +83,8 @@ USAGE:
 7. Learn about different Nigerian cultures through descriptions
 
 REFERENCES:
-GreatStack (Youtube);
-Grok;
-chatgpt;
-claude;
+GreatStack (Youtube - How To Make A Portfolio Website Using HTML CSS JS | Complete Responsive Website Design) https://www.youtube.com/watch?v=0YFrGy_mzjY;
+
+ AI Assistance:
+ Parts of this project were assisted by
+Grok; chatgpt; claude; to expedite code development and optimize algorithms.
